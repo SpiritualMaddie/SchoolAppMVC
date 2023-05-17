@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SchoolMVC.Models.CourseList>
+
+@{
+    ViewData["Title"] = "More";
+}
+
+<div class="text-center">
+    <h1 class="display-4">More features</h1>
+    <h5>Here you can choose to view more tailored information and have more editing options</h5>
+</div>
+    <br />
+    <hr />
+<div class="row">
+    <div class="col-md-4">
+        <h6>
+            Get all teachers in selected course:
+        </h6>
+        <br />
+        @using (Html.BeginForm("AllTeachers", "CourseList"))
+        {
+            @Html.DropDownList("CourseId", ViewBag.CourseList as SelectList, "Select a course", new { @class = "form-control" })
+            <br />
+            <button type="submit" class="buttonStyle">Search</button>
+        }
+        <br />
+        <hr/>
+
+        <h6>
+            Get all students and their teachers:
+        </h6>
+        <br/>
+        <button class="buttonStyle"><a class="btnAwhite" asp-action="GetAllStudentsTeachers">Get all</a></button>
+        <br />
+        <hr/>
+
+
+        <h6>
+            Get all students and their teachers in selected course:
+        </h6>
+        <br/>
+        @using (Html.BeginForm("StudentsTeachersInCourse", "CourseList"))
+        {
+            @Html.DropDownList("CourseId", ViewBag.CourseList as SelectList, "Select a course", new { @class = "form-control" })
+            <br />
+            <button type="submit" class="buttonStyle">Search</button>
+        }
+        <br />
+        <hr />
+
+        <h6>
+            Change teacher for selected student in selected course:
+        </h6>
+        <br />
+       @using (Html.BeginForm("ChangeTeacher", "CourseList"))
+        {
+            @Html.DropDownList("StudentId", ViewBag.StudentList as SelectList, "Select a student", new { @class = "form-control" })
+            <br />
+            @Html.DropDownList("CourseId", ViewBag.CourseList as SelectList, "Select a course", new { @class = "form-control" })
+            <br />
+            
+            <button type="submit" class="buttonStyle">Search</button>
+        }
+        <br />
+        <hr />
+    </div>
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}

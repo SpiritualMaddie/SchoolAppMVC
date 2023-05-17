@@ -1,0 +1,35 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "All students and their teachers";
+}
+
+<h1>List of students and their teachers</h1>
+
+<table class="table table-hover">
+    <thead class="head-row">
+        <tr>
+            <th>Student</th>
+            <th>Teacher</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in ViewBag.studTeachList)
+        {
+            @for (int i = 0; i < student.Teachers.Count; i++)
+            {
+                <tr class="student-row">
+                    @if (i == 0)
+                    {
+                        <td rowspan="@student.Teachers.Count">@student.Student</td>
+                    }
+                    <td class="teacher-row">@student.Teachers[i]</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<hr/>
+
+<br />
+<a asp-action="Index">Go back</a>

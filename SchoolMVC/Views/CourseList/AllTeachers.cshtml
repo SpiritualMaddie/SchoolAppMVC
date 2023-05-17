@@ -1,0 +1,31 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "All teachers in course";
+}
+
+<h1>List of teachers in the selected course</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+                
+<br/>
+<a asp-action="Index">Go back</a>

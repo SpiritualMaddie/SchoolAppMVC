@@ -1,0 +1,58 @@
+﻿@model SchoolMVC.Models.CourseList
+
+@{
+    ViewData["Title"] = "Change Teacher";
+}
+
+<h1>Change teacher in course</h1>
+
+<h4>Here you can change the teacher for
+    student:
+    @foreach (var student in ViewBag.StudentName)
+    {
+        @student
+    }
+</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <h6>Current teachers:
+            @foreach (var teacher in ViewBag.TeacherName)
+            {
+                @teacher
+            }
+            </h6>
+        <h6>
+            Selected course:
+            @foreach (var course in ViewBag.SelectedCourse)
+            {
+                @course
+            }
+        </h6>
+        <hr/>
+        <br/>
+        @using (Html.BeginForm("ChangeTeacherPOST", "CourseList"))
+        {
+            @Html.DropDownList("TeacherId", ViewBag.Teachers as SelectList, "Select a new teacher", new { @class = "form-control" })
+            <br />
+            @Html.Hidden("CourseListId", ViewData["CourseListId"])
+
+            <button type="submit" class="buttonStyle">Search</button>
+        }
+        <br/>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index">| Back</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Students & teachers in course";
+}
+
+<h1>List of students and teachers in the selected course</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Students
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.studList)
+        {
+            <tr>
+                <td>
+                    @item
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Teachers
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item2 in ViewBag.teachList)
+        {
+            <tr>
+                <td>
+                    @item2
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<a asp-action="Index">Go back</a>
